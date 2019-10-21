@@ -12,7 +12,11 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    }
    
    public void dateTimeNow() {
-	   
+	   String printFormat = "Current Date/Time: " + 
+			   calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.DAY_OF_MONTH) +
+			   "/" + calendar.get(Calendar.YEAR) + " " + calendar.get(Calendar.HOUR) + ":" + 
+			   calendar.get(Calendar.MINUTE) + " " + calendar.get(Calendar.AM_PM);
+	   System.out.println(printFormat);
    }
    
    public void sleepForFiveSec() {
