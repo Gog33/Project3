@@ -1,7 +1,14 @@
-
+import java.util.Calendar;
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
-   public int getValueOfSecond() {
+	Calendar calendar;
+	
+	
+	public DateTimeOne() {
+		calendar = Calendar.getInstance();
+	}
+	
+	public int getValueOfSecond() {
 	   return 0;
    }
    
