@@ -2,15 +2,13 @@ import java.util.Calendar;
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
 	Calendar calendar;
-	int secondValue;
 	
 	public DateTimeOne() {
 		this.calendar = Calendar.getInstance();
-		secondValue = calendar.get(Calendar.SECOND);
 	}
 	
 	public int getValueOfSecond() {
-	   return secondValue;
+	   return calendar.get(Calendar.SECOND);
    }
    
    public void dateTimeNow() {
@@ -18,7 +16,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    }
    
    public void sleepForFiveSec() {
-	   
+	   calendar.add(Calendar.SECOND, 5);
    }
    
    public void dateTimeOfOtherCity() {
