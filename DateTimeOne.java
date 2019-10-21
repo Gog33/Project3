@@ -5,30 +5,29 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
-	Calendar calendar;
+	LocalDateTime dateTime;
 	
 	public DateTimeOne() {
-		this.calendar = Calendar.getInstance();
+		dateTime = LocalDateTime.now();
 	}
 	
 	public int getValueOfSecond() {
-	   return calendar.get(Calendar.SECOND);
+	   return dateTime.getSecond();
    }
    
    public void dateTimeNow() {
-	   Date date = calendar.getTime();
-	   LocalDateTime ldt = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
 	   DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("mm/dd/yyyy hh:mm aa");
 
-	   System.out.println("Current Date/Time: " + dtFormat.format(ldt));
+	   System.out.println("Current Date/Time: " + dtFormat.format(dateTime));
    }
    
    public void sleepForFiveSec() {
-	   calendar.add(Calendar.SECOND, 5);
+	   dateTime.plusSeconds(5);
    }
    
    public void dateTimeOfOtherCity() {
-		
+		String printFormat = "Time on Server: ";
+		System.out.println(printFormat);
    }
    
    public void dateTimeDifferentZone() {
