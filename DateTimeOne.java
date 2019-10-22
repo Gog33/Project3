@@ -94,7 +94,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   for (String key : dates3.keySet())
 		   System.out.println(key);
 	   
-	   System.out.println("Print Style 5:");
+	   System.out.println("Print Style 5: Final Sorted Array:");
 	   for (int i = 0; i < dates5.size(); ++i) 
 		   System.out.println(printStyle5.format(dates5.get(i)));
    }
