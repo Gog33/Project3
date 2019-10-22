@@ -18,7 +18,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    }
    
    public void dateTimeNow() {
-	   DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("mm/dd/yyyy hh:mm aa");
+	   DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm aa");
 	   LocalDateTime printDate = dateTime;
 	   if (printDate.getHour() > 11)
 		   printDate.minusHours(12);
@@ -43,7 +43,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    }
    
    public void dateTimeDifferentZone() {
-	   DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("mm/dd/yyyy hh:mm");
+	   DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm");
 	   HashMap<String, String> dates = new HashMap<String, String>();
 	   ZonedDateTime greenwichTime = dateTime.atZone(ZoneId.of("GMT"));
 	   dates.put("GMT", dtFormat.format(greenwichTime));
@@ -58,8 +58,8 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    }
    
    public void timeZoneHashMap() {
-	   DateTimeFormatter printStyle1_3 = DateTimeFormatter.ofPattern("mm/dd/yyyy hh:mm");
+	   DateTimeFormatter printStyle1_3 = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm");
 	   
-	   DateTimeFormatter printStyle5 = DateTimeFormatter.ofPattern("yyyy-mm-ddThh:mm");
+	   DateTimeFormatter printStyle5 = DateTimeFormatter.ofPattern("yyyy-MM-ddThh:mm");
    }
 }
