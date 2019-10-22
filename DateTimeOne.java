@@ -58,6 +58,8 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    }
    
    public void timeZoneHashMap() {
+	   DateTimeFormatter printStyle1_3 = DateTimeFormatter.ofPattern("mm/dd/yyyy hh:mm");
 	   
+	   DateTimeFormatter printStyle5 = DateTimeFormatter.ofPattern("yyyy-mm-ddThh:mm");
    }
 }
