@@ -1,15 +1,23 @@
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.DayOfWeek;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 public class DateTimeTwo {
-	LocalDateTime dateTime;
+	LocalDate currDate;
 	
 	public DateTimeTwo() {
-		dateTime = LocalDateTime.now();
+		currDate = LocalDate.now();
 	}
 	
 	public void daysOfCurrentMonth() {
-		
+		String dateString = currDate.getMonthValue() + "/10/" + currDate.getYear();
+		LocalDate tempDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("M/d/uuuu"));
+		DayOfWeek tenthDay = tempDate.getDayOfWeek();
+		dateString = currDate.getMonthValue() + "/18/" + currDate.getYear();
+		tempDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("M/d/uuuu"));
+		DayOfWeek eighteenthDay = tempDate.getDayOfWeek();
+		System.out.println("The tenth day of this month is " + tenthDay +
+				" and the eighteenth is " + eighteenthDay);
 	}
 	
 	public void daysOfAnyMonth(int month, int year) {
