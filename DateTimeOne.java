@@ -88,8 +88,14 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   
 	   dates5 = sortbyYear(dates5);
 	   
+	   for (Entry<String,String> entry : dates1.entrySet())
+		   System.out.println(entry.getKey() + " " + entry.getValue());
 	   
+	   for (String key : dates3.keySet())
+		   System.out.println(key);
 	   
+	   for (int i = 0; i < dates5.size(); ++i) 
+		   System.out.println(printStyle5.format(dates5.get(i)));
    }
    
    public static <Key, Value extends Comparable<String>> HashMap<String, String> sortbyKey(HashMap<String, String> map) {
