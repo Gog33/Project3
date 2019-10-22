@@ -58,8 +58,21 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    }
    
    public void timeZoneHashMap() {
+	   HashMap<String, LocalDateTime> dates = new HashMap<String, LocalDateTime>();
+	   ZonedDateTime greenwichTime = dateTime.atZone(ZoneId.of("GMT"));
+	   dates.put("GMT", greenwichTime.toLocalDateTime());
+	   ZonedDateTime bangladeshTime = dateTime.atZone(ZoneId.of("BST"));
+	   dates.put("BST", bangladeshTime.toLocalDateTime());
+	   ZonedDateTime centralTime = dateTime.atZone(ZoneId.of("CST"));
+	   dates.put("CST", centralTime.toLocalDateTime());
+	   LocalDateTime ast = LocalDateTime.of(2020, 10, 01, 19, 59);
+	   dates.put("AST", ast);
+	   LocalDateTime zst = LocalDateTime.of(2018, 11, 05, 19, 59);
+	   dates.put("ZST", zst);
+	   
 	   DateTimeFormatter printStyle1_3 = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm");
 	   
 	   DateTimeFormatter printStyle5 = DateTimeFormatter.ofPattern("yyyy-MM-ddThh:mm");
+	   
    }
 }
