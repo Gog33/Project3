@@ -3,7 +3,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
@@ -11,6 +11,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	
 	public DateTimeOne() {
 		dateTime = LocalDateTime.now();
+		//dateTime = LocalDateTime.of(2019, 10, 8, 15, 48); - the test time
 	}
 	
 	public int getValueOfSecond() {
@@ -18,11 +19,8 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    }
    
    public void dateTimeNow() {
-	   DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm aa");
-	   LocalDateTime printDate = dateTime;
-	   if (printDate.getHour() > 11)
-		   printDate.minusHours(12);
-	   System.out.println("Current Date/Time: " + dtFormat.format(printDate));
+	   DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");
+	   System.out.println("Current Date/Time: " + dtFormat.format(dateTime));
    }
    
    public void sleepForFiveSec() {
@@ -30,26 +28,26 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    }
    
    public void dateTimeOfOtherCity() {
-		DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("hh:mm");
+		DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
 	   	String printFormat = "Time on Server: " + timeFormat.format(dateTime) + "\n";
-	   	ZonedDateTime greenwichTime = dateTime.atZone(ZoneId.of("GMT"));
+	   	ZonedDateTime greenwichTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("GMT", ZoneId.SHORT_IDS));
 	   	printFormat += "GMT: " + timeFormat.format(greenwichTime) + "\n";
-	   	ZonedDateTime bangladeshTime = dateTime.atZone(ZoneId.of("BST"));
+	   	ZonedDateTime bangladeshTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("BST", ZoneId.SHORT_IDS));
 	   	printFormat += "BST (90E): " + timeFormat.format(bangladeshTime) + "\n";
-	   	ZonedDateTime centralTime = dateTime.atZone(ZoneId.of("CST"));
+	   	ZonedDateTime centralTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("CST", ZoneId.SHORT_IDS));
 	   	printFormat += "CST (90W): " + timeFormat.format(centralTime);
 	   	
 		System.out.println(printFormat);
    }
    
    public void dateTimeDifferentZone() {
-	   DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm");
-	   HashMap<String, String> dates = new HashMap<String, String>();
-	   ZonedDateTime greenwichTime = dateTime.atZone(ZoneId.of("GMT"));
+	   DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
+	   LinkedHashMap<String, String> dates = new LinkedHashMap<String, String>();
+	   ZonedDateTime greenwichTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("GMT", ZoneId.SHORT_IDS));
 	   dates.put("GMT", dtFormat.format(greenwichTime));
-	   ZonedDateTime bangladeshTime = dateTime.atZone(ZoneId.of("BST"));
+	   ZonedDateTime bangladeshTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("BST", ZoneId.SHORT_IDS));
 	   dates.put("BST", dtFormat.format(bangladeshTime));
-	   ZonedDateTime centralTime = dateTime.atZone(ZoneId.of("CST"));
+	   ZonedDateTime centralTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("CST", ZoneId.SHORT_IDS));
 	   dates.put("CST", dtFormat.format(centralTime));
 	   
 	   for (Entry<String,String> date : dates.entrySet())
@@ -57,15 +55,15 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    }
    
    public void timeZoneHashMap() {
-	   DateTimeFormatter printStyle1 = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm");
-	   DateTimeFormatter printStyle5 = DateTimeFormatter.ofPattern("yyyy-MM-ddThh:mm");
+	   DateTimeFormatter printStyle1 = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
+	   DateTimeFormatter printStyle5 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 	   
-	   HashMap<String, String> dates1 = new HashMap<String, String>();
-	   ZonedDateTime greenwichTime = dateTime.atZone(ZoneId.of("GMT"));
+	   LinkedHashMap<String, String> dates1 = new LinkedHashMap<String, String>();
+	   ZonedDateTime greenwichTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("GMT", ZoneId.SHORT_IDS));
 	   dates1.put("GMT", printStyle1.format(greenwichTime.toLocalDateTime()));
-	   ZonedDateTime bangladeshTime = dateTime.atZone(ZoneId.of("BST"));
+	   ZonedDateTime bangladeshTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("BST", ZoneId.SHORT_IDS));
 	   dates1.put("BST", printStyle1.format(bangladeshTime.toLocalDateTime()));
-	   ZonedDateTime centralTime = dateTime.atZone(ZoneId.of("CST"));
+	   ZonedDateTime centralTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("CST", ZoneId.SHORT_IDS));
 	   dates1.put("CST", printStyle1.format(centralTime.toLocalDateTime()));
 	   LocalDateTime ast = LocalDateTime.of(2020, 10, 01, 19, 59);
 	   dates1.put("AST", printStyle1.format(ast));
@@ -74,7 +72,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   
 	   dates1 = sortbyKey(dates1);
 	   
-	   HashMap<String, String> dates3 = new HashMap<String, String>();
+	   LinkedHashMap<String, String> dates3 = new LinkedHashMap<String, String>();
 	   for (Entry<String,String> date : dates1.entrySet())
 		   dates3.put(date.getValue(), "");
 	   
@@ -88,18 +86,21 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   
 	   dates5 = sortbyYear(dates5);
 	   
+	   System.out.println("Print Style 1:");
 	   for (Entry<String,String> entry : dates1.entrySet())
 		   System.out.println(entry.getKey() + " " + entry.getValue());
 	   
+	   System.out.println("Print Style 3:");
 	   for (String key : dates3.keySet())
 		   System.out.println(key);
 	   
+	   System.out.println("Print Style 5:");
 	   for (int i = 0; i < dates5.size(); ++i) 
 		   System.out.println(printStyle5.format(dates5.get(i)));
    }
    
-   public static <Key, Value extends Comparable<String>> HashMap<String, String> sortbyKey(HashMap<String, String> map) {
-       HashMap<String, String> result = new HashMap<>();
+   public static <Key, Value extends Comparable<String>> LinkedHashMap<String, String> sortbyKey(LinkedHashMap<String, String> map) {
+       LinkedHashMap<String, String> result = new LinkedHashMap<>();
 	   ArrayList<Entry<String, String>> list = new ArrayList<>(map.entrySet());
        list.sort(Entry.comparingByKey());
 
@@ -114,7 +115,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   for (int i = 1; i < list.size(); ++i) {
 		   LocalDateTime currDate = list.get(i);
 		   int j = i - 1;
-		   while (j >= 0 && list.get(j).getYear() >= currDate.getYear()) {
+		   while (j >= 0 && list.get(j).getYear() <= currDate.getYear()) {
 			   if (list.get(j).getYear() == currDate.getYear()) {
 				   if (list.get(j).getMonthValue() > currDate.getMonthValue()) {
 					   list.set(j + 1, list.get(j));
@@ -122,19 +123,33 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 				   } else if (list.get(j).getMonthValue() < currDate.getMonthValue()) {
 					   break;
 				   } else {
-					   if (list.get(j).getDayOfMonth() > currDate.getDayOfMonth()) {
+					   if (list.get(j).getDayOfMonth() < currDate.getDayOfMonth()) {
 						   list.set(j + 1, list.get(j));
 						   --j;
-					   } else {
+					   } else if (list.get(j).getDayOfMonth() > currDate.getDayOfMonth()) {
 						   break;
+					   } else {
+						   if (list.get(j).getHour() < currDate.getHour()) {
+							   list.set(j + 1, list.get(j));
+							   --j;
+						   } else if (list.get(j).getHour() > currDate.getHour()) {
+							   break;
+						   } else {
+							   if (list.get(j).getMinute() < currDate.getMinute()) {
+								   list.set(j + 1, list.get(j));
+								   --j;
+							   } else {
+								   break;
+							   }
+						   }
 					   }
 				   }
 			   } else {
 			   list.set(j + 1, list.get(j));
 			   --j;
 			   }
+			   list.set(j + 1, currDate);
 		   }
-		   list.set(j, currDate);
 	   }
 	   return list;
    }
