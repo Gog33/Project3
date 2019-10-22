@@ -3,20 +3,42 @@ import java.time.DayOfWeek;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 public class DateTimeTwo {
 	LocalDate currDate;
+	LinkedHashMap<LocalDate, Integer> fileYears;
 	
-	public DateTimeTwo() {
+	public DateTimeTwo() throws IOException {
 		currDate = LocalDate.now();
+		fileYears = new LinkedHashMap<LocalDate, Integer>();
+		readDates();
+	}
+	
+	public void readDates() throws IOException {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("Dates.txt"));
+			String input;
+			Integer dateNum = 0;
+			while ((input = br.readLine()) != null) {
+				++dateNum;
+				LocalDate inputDate = LocalDate.parse(input, DateTimeFormatter.ofPattern("MM.dd.yyyy"));
+				fileYears.put(inputDate, dateNum);
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void daysOfCurrentMonth() {
 		String dateString = currDate.getMonthValue() + "/10/" + currDate.getYear();
-		LocalDate tempDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("M/d/uuuu"));
+		LocalDate tempDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("M/d/yyyy"));
 		DayOfWeek tenthDay = tempDate.getDayOfWeek();
 		
 		dateString = currDate.getMonthValue() + "/18/" + currDate.getYear();
-		tempDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("M/d/uuuu"));
+		tempDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("M/d/yyyy"));
 		DayOfWeek eighteenthDay = tempDate.getDayOfWeek();
 		
 		System.out.println("The tenth day of this month is " + tenthDay +
@@ -25,14 +47,14 @@ public class DateTimeTwo {
 	
 	public void daysOfAnyMonth(int month, int year) {
 		String dateString = month + "/15/" + year;
-		LocalDate tempDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("M/d/uuuu"));
+		LocalDate tempDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("M/d/yyyy"));
 		boolean leapYear = tempDate.isLeapYear();
 		DayOfWeek fifteenthDay = tempDate.getDayOfWeek();
 		
 		Month typeMonth = Month.of(month);
 		int numDaysInMonth = typeMonth.length(leapYear);
 		dateString = month + "/" + numDaysInMonth + "/" + year;
-		tempDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("M/d/uuuu"));
+		tempDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("M/d/yyyy"));
 		DayOfWeek lastDay = tempDate.getDayOfWeek();
 		
 		System.out.println("For the year (" + year + ") and month (" + month +
