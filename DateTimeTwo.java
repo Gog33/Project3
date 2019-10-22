@@ -8,4 +8,24 @@ public class DateTimeTwo {
 		dateTime = LocalDateTime.now();
 	}
 	
+	public void daysOfCurrentMonth() {
+		
+	}
+	
+	public void daysOfAnyMonth(int month, int year) {
+		
+	}
+	
+	public void compareYear() {
+		
+	}
+	
+	public void dateHashMap() {
+		
+	}
+	
+	public void dateHashMapSorted() {
+		
+	}
+	
 }
