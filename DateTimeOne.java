@@ -2,8 +2,10 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 public class DateTimeOne extends MesoDateTimeOneAbstract
@@ -74,7 +76,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   LocalDateTime zst = LocalDateTime.of(2018, 11, 05, 19, 59);
 	   dates1.put("ZST", printStyle1.format(zst));
 	   
-	   
+	   dates1 = sortStyle1(dates1);
 	   
 	   HashMap<String, String> dates2 = new HashMap<String, String>();
 	   //dates2.putAll(dates1);
@@ -82,6 +84,16 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   
    }
    
-   
+   public static <Key, Value extends Comparable<String>> HashMap<String, String> sortStyle1(HashMap<String, String> map) {
+       ArrayList<Entry<String, String>> list = new ArrayList<>(map.entrySet());
+       list.sort(Entry.comparingByKey());
+
+       HashMap<String, String> result = new HashMap<>();
+       for (Entry<String, String> entry : list) {
+           result.put(entry.getKey(), entry.getValue());
+       }
+
+       return result;   
+   }
    
 }
