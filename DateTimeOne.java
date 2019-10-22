@@ -3,6 +3,8 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
 	LocalDateTime dateTime;
@@ -50,7 +52,9 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   ZonedDateTime centralTime = dateTime.atZone(ZoneId.of("CST"));
 	   dates.put("CST", dtFormat.format(centralTime));
 	   
-	   
+	   for (Entry<String,String> date : dates.entrySet()) {
+		   System.out.println(date.getKey() + ": " + date.getValue());
+	   }
    }
    
    public void timeZoneHashMap() {
