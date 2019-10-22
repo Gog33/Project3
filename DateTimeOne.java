@@ -76,15 +76,17 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   LocalDateTime zst = LocalDateTime.of(2018, 11, 05, 19, 59);
 	   dates1.put("ZST", printStyle1.format(zst));
 	   
-	   dates1 = sortStyle1(dates1);
+	   dates1 = sortbyKey(dates1);
 	   
-	   HashMap<String, String> dates2 = new HashMap<String, String>();
-	   //dates2.putAll(dates1);
+	   HashMap<String, String> dates3 = new HashMap<String, String>();
+	   for (Entry<String,String> date : dates1.entrySet())
+		   dates3.put(date.getValue(), "");
 	   
+	   dates3 = sortbyKey(dates3);
 	   
    }
    
-   public static <Key, Value extends Comparable<String>> HashMap<String, String> sortStyle1(HashMap<String, String> map) {
+   public static <Key, Value extends Comparable<String>> HashMap<String, String> sortbyKey(HashMap<String, String> map) {
        ArrayList<Entry<String, String>> list = new ArrayList<>(map.entrySet());
        list.sort(Entry.comparingByKey());
 
