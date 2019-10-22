@@ -3,10 +3,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
@@ -55,9 +52,8 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   ZonedDateTime centralTime = dateTime.atZone(ZoneId.of("CST"));
 	   dates.put("CST", dtFormat.format(centralTime));
 	   
-	   for (Entry<String,String> date : dates.entrySet()) {
+	   for (Entry<String,String> date : dates.entrySet())
 		   System.out.println(date.getKey() + ": " + date.getValue());
-	   }
    }
    
    public void timeZoneHashMap() {
@@ -84,18 +80,57 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   
 	   dates3 = sortbyKey(dates3);
 	   
+	   ArrayList<LocalDateTime> dates5 = new ArrayList<LocalDateTime>();
+	   for (Entry<String,String> entry : dates1.entrySet()) {
+		   LocalDateTime newDate = LocalDateTime.parse(entry.getValue(), printStyle1);
+		   dates5.add(newDate);
+	   }
+	   
+	   dates5 = sortbyYear(dates5);
+	   
+	   
+	   
    }
    
    public static <Key, Value extends Comparable<String>> HashMap<String, String> sortbyKey(HashMap<String, String> map) {
-       ArrayList<Entry<String, String>> list = new ArrayList<>(map.entrySet());
+       HashMap<String, String> result = new HashMap<>();
+	   ArrayList<Entry<String, String>> list = new ArrayList<>(map.entrySet());
        list.sort(Entry.comparingByKey());
 
-       HashMap<String, String> result = new HashMap<>();
        for (Entry<String, String> entry : list) {
            result.put(entry.getKey(), entry.getValue());
        }
 
        return result;   
+   }
+   
+   public static ArrayList<LocalDateTime> sortbyYear(ArrayList<LocalDateTime> list) {
+	   for (int i = 1; i < list.size(); ++i) {
+		   LocalDateTime currDate = list.get(i);
+		   int j = i - 1;
+		   while (j >= 0 && list.get(j).getYear() >= currDate.getYear()) {
+			   if (list.get(j).getYear() == currDate.getYear()) {
+				   if (list.get(j).getMonthValue() > currDate.getMonthValue()) {
+					   list.set(j + 1, list.get(j));
+					   --j;
+				   } else if (list.get(j).getMonthValue() < currDate.getMonthValue()) {
+					   break;
+				   } else {
+					   if (list.get(j).getDayOfMonth() > currDate.getDayOfMonth()) {
+						   list.set(j + 1, list.get(j));
+						   --j;
+					   } else {
+						   break;
+					   }
+				   }
+			   } else {
+			   list.set(j + 1, list.get(j));
+			   --j;
+			   }
+		   }
+		   list.set(j, currDate);
+	   }
+	   return list;
    }
    
 }
