@@ -2,6 +2,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -58,21 +59,29 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    }
    
    public void timeZoneHashMap() {
-	   HashMap<String, LocalDateTime> dates = new HashMap<String, LocalDateTime>();
-	   ZonedDateTime greenwichTime = dateTime.atZone(ZoneId.of("GMT"));
-	   dates.put("GMT", greenwichTime.toLocalDateTime());
-	   ZonedDateTime bangladeshTime = dateTime.atZone(ZoneId.of("BST"));
-	   dates.put("BST", bangladeshTime.toLocalDateTime());
-	   ZonedDateTime centralTime = dateTime.atZone(ZoneId.of("CST"));
-	   dates.put("CST", centralTime.toLocalDateTime());
-	   LocalDateTime ast = LocalDateTime.of(2020, 10, 01, 19, 59);
-	   dates.put("AST", ast);
-	   LocalDateTime zst = LocalDateTime.of(2018, 11, 05, 19, 59);
-	   dates.put("ZST", zst);
-	   
-	   DateTimeFormatter printStyle1_3 = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm");
-	   
+	   DateTimeFormatter printStyle1 = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm");
 	   DateTimeFormatter printStyle5 = DateTimeFormatter.ofPattern("yyyy-MM-ddThh:mm");
 	   
+	   HashMap<String, String> dates1 = new HashMap<String, String>();
+	   ZonedDateTime greenwichTime = dateTime.atZone(ZoneId.of("GMT"));
+	   dates1.put("GMT", printStyle1.format(greenwichTime.toLocalDateTime()));
+	   ZonedDateTime bangladeshTime = dateTime.atZone(ZoneId.of("BST"));
+	   dates1.put("BST", printStyle1.format(bangladeshTime.toLocalDateTime()));
+	   ZonedDateTime centralTime = dateTime.atZone(ZoneId.of("CST"));
+	   dates1.put("CST", printStyle1.format(centralTime.toLocalDateTime()));
+	   LocalDateTime ast = LocalDateTime.of(2020, 10, 01, 19, 59);
+	   dates1.put("AST", printStyle1.format(ast));
+	   LocalDateTime zst = LocalDateTime.of(2018, 11, 05, 19, 59);
+	   dates1.put("ZST", printStyle1.format(zst));
+	   
+	   
+	   
+	   HashMap<String, String> dates2 = new HashMap<String, String>();
+	   //dates2.putAll(dates1);
+	   
+	   
    }
+   
+   
+   
 }
