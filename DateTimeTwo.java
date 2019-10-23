@@ -45,7 +45,7 @@ public class DateTimeTwo {
 		DayOfWeek eighteenthDay = tempDate.getDayOfWeek();
 		
 		System.out.println("The tenth day of this month is " + tenthDay +
-				" and the eighteenth is " + eighteenthDay);
+				" and eighteenth is " + eighteenthDay);
 	}
 	
 	public void daysOfAnyMonth(int month, int year) {
