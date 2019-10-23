@@ -59,10 +59,10 @@ public class DateSortingUsingAlgorithm {
 			int j = i - 1;
 			while (j >= 0 && list.get(j).getYear() >= currDate.getYear()) {
 				if (list.get(j).getYear() == currDate.getYear()) {
-					if (list.get(j).getMonthValue() < currDate.getMonthValue()) {
+					if (list.get(j).getMonthValue() > currDate.getMonthValue()) {
 						list.set(j + 1, list.get(j));
 						--j;
-					} else if (list.get(j).getMonthValue() > currDate.getMonthValue()) {
+					} else if (list.get(j).getMonthValue() < currDate.getMonthValue()) {
 						break;
 					} else {
 						if (list.get(j).getDayOfMonth() > currDate.getDayOfMonth()) {
@@ -95,10 +95,10 @@ public class DateSortingUsingAlgorithm {
 			int j = i - 1;
 			while (j >= 0 && list.get(j).getYear() <= currDate.getYear()) {
 				if (list.get(j).getYear() == currDate.getYear()) {
-					if (list.get(j).getMonthValue() > currDate.getMonthValue()) {
+					if (list.get(j).getMonthValue() < currDate.getMonthValue()) {
 						list.set(j + 1, list.get(j));
 						--j;
-					} else if (list.get(j).getMonthValue() < currDate.getMonthValue()) {
+					} else if (list.get(j).getMonthValue() > currDate.getMonthValue()) {
 						break;
 					} else {
 						if (list.get(j).getDayOfMonth() < currDate.getDayOfMonth()) {
