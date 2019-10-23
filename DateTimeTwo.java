@@ -78,7 +78,11 @@ public class DateTimeTwo {
 	}
 	
 	public void dateHashMap() {
-		
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		for (Entry<LocalDate, Integer> entry : fileDates.entrySet()) {
+			System.out.println(entry.getKey().format(dateFormat) +
+					":" + entry.getValue());
+		}
 	}
 	
 	public void dateHashMapSorted() {
