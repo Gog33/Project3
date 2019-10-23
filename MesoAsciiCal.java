@@ -1,6 +1,7 @@
 
 public class MesoAsciiCal extends MesoAsciiAbstract {
 	MesoStation station;
+	final static double NRMN_AVG = 79.0;
 	
 	public MesoAsciiCal(MesoStation station) {
 		this.station = station;
@@ -13,10 +14,13 @@ public class MesoAsciiCal extends MesoAsciiAbstract {
 		}
 		asciiAverage = asciiAverage / station.getStID().length();
 
-		if (asciiAverage - Math.floor(asciiAverage) < 0.5) {
-			return (int) Math.floor(asciiAverage);
+		if (asciiAverage - Math.floor(asciiAverage) < 0.25) {
+			asciiAverage = (int) Math.floor(asciiAverage);
 		} else {
-			return (int) Math.ceil(asciiAverage);
+			asciiAverage = (int) Math.ceil(asciiAverage);
 		}
+		
+		double finalAverage = (asciiAverage + NRMN_AVG) / 2.0;
+		return (int) Math.ceil(finalAverage);
 	}
 }
