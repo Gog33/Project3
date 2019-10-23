@@ -87,9 +87,13 @@ public class DateTimeTwo {
 	}
 	
 	public void dateHashMapSorted() {
-		LinkedHashMap<LocalDate, Integer> result = sortDateAscending(fileDates);
+		LinkedHashMap<LocalDate, Integer> sortedFileDates = sortDateAscending(fileDates);
 		
-		
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		for (Entry<LocalDate, Integer> entry : sortedFileDates.entrySet()) {
+			System.out.println(entry.getKey().format(dateFormat) +
+					":" + entry.getValue());
+		}
 	}
 	
 	public LinkedHashMap<LocalDate, Integer> sortDateAscending(LinkedHashMap<LocalDate, Integer> dateMap) {
