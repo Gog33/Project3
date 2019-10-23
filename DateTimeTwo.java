@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 public class DateTimeTwo {
 	LocalDate currDate;
 	LinkedHashMap<LocalDate, Integer> fileDates;
@@ -86,7 +87,18 @@ public class DateTimeTwo {
 	}
 	
 	public void dateHashMapSorted() {
+		LinkedHashMap<LocalDate, Integer> result = sortDateAscending(fileDates);
 		
+		
+	}
+	
+	public LinkedHashMap<LocalDate, Integer> sortDateAscending(LinkedHashMap<LocalDate, Integer> dateMap) {
+		ArrayList<LocalDate> list = new ArrayList<LocalDate>(dateMap.keySet());
+		LinkedHashMap<LocalDate, Integer> result = new LinkedHashMap<LocalDate, Integer>();
+		
+		
+		
+		return result;
 	}
 	
 }
