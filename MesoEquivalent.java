@@ -25,7 +25,7 @@ public class MesoEquivalent {
 		while ((stIDinput = br.readLine()) != null) {
 			stIDinput = stIDinput.trim();
 			stIDinput = stIDinput.substring(0, 4);
-			int stIDasciiAverage = calAsciiVal(stIDinput);
+			int stIDasciiAverage = (new MesoAsciiCal(new MesoStation(stIDinput))).calAverage();
 			if (stIDasciiAverage == asciiAverage) {
 				equalAscii.put(stIDinput, stIDasciiAverage);
 			}
@@ -34,7 +34,7 @@ public class MesoEquivalent {
 		
 		return equalAscii;
 	}
-	
+/**	
 	public int calAsciiVal(String stID) {
 		double asciiAverage = 0.0;
 		for (int i = 0; i < stID.length(); ++i) {
@@ -48,5 +48,5 @@ public class MesoEquivalent {
 			return (int) Math.ceil(asciiAverage);
 		}
 	}
-	
+	*/
 }
