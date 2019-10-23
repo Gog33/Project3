@@ -97,30 +97,35 @@ public class DateTimeTwo {
 		LinkedHashMap<LocalDate, Integer> result = new LinkedHashMap<LocalDate, Integer>();
 		
 		for (int i = 1; i < list.size(); ++i) {
-			   LocalDate currDate = list.get(i);
-			   int j = i - 1;
-			   while (j >= 0 && list.get(j).getYear() >= currDate.getYear()) {
-				   if (list.get(j).getYear() == currDate.getYear()) {
-					   if (list.get(j).getMonthValue() < currDate.getMonthValue()) {
-						   list.set(j + 1, list.get(j));
-						   --j;
-					   } else if (list.get(j).getMonthValue() > currDate.getMonthValue()) {
-						   break;
-					   } else {
-						   if (list.get(j).getDayOfMonth() > currDate.getDayOfMonth()) {
-							   list.set(j + 1, list.get(j));
-							   --j;
-						   } else {
-							   break;
-						   }
-					   }
-				   } else {
-				   list.set(j + 1, list.get(j));
-				   --j;
-				   }
-				   list.set(j + 1, currDate);
-			   }
-		   }
+			LocalDate currDate = list.get(i);
+			int j = i - 1;
+			while (j >= 0 && list.get(j).getYear() >= currDate.getYear()) {
+				if (list.get(j).getYear() == currDate.getYear()) {
+					if (list.get(j).getMonthValue() < currDate.getMonthValue()) {
+						list.set(j + 1, list.get(j));
+						--j;
+					} else if (list.get(j).getMonthValue() > currDate.getMonthValue()) {
+						break;
+					} else {
+						if (list.get(j).getDayOfMonth() > currDate.getDayOfMonth()) {
+							list.set(j + 1, list.get(j));
+							--j;
+						} else {
+							break;
+						}
+					}
+				} else {
+					list.set(j + 1, list.get(j));
+					--j;
+				}
+				list.set(j + 1, currDate);
+			}
+		}
+		
+		for (int i = 0; i < list.size(); ++i) {
+			int dateNum = dateMap.get(list.get(i));
+			result.put(list.get(i), dateNum);
+		}
 		
 		return result;
 	}
