@@ -3,16 +3,18 @@ import java.time.DayOfWeek;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
+import java.time.Period;
+import java.util.Map.Entry;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 public class DateTimeTwo {
 	LocalDate currDate;
-	LinkedHashMap<LocalDate, Integer> fileYears;
+	LinkedHashMap<LocalDate, Integer> fileDates;
 	
 	public DateTimeTwo() throws IOException {
 		currDate = LocalDate.now();
-		fileYears = new LinkedHashMap<LocalDate, Integer>();
+		fileDates = new LinkedHashMap<LocalDate, Integer>();
 		readDates();
 	}
 	
@@ -24,7 +26,7 @@ public class DateTimeTwo {
 			while ((input = br.readLine()) != null) {
 				++dateNum;
 				LocalDate inputDate = LocalDate.parse(input, DateTimeFormatter.ofPattern("MM.dd.yyyy"));
-				fileYears.put(inputDate, dateNum);
+				fileDates.put(inputDate, dateNum);
 			}
 			br.close();
 		} catch (IOException e) {
@@ -63,7 +65,16 @@ public class DateTimeTwo {
 	}
 	
 	public void compareYear() {
-		
+		for (LocalDate fileDate : fileDates.keySet()) {
+			Period timeDiff = Period.between(currDate, fileDate);
+			String notLeapYear = "";
+			if (!fileDate.isLeapYear())
+				notLeapYear = "not ";
+			System.out.println(fileDate.getYear() + " is " + notLeapYear +
+					"a leap year, and Difference: " + timeDiff.getYears() +
+					" years, " + timeDiff.getMonths() + " months, and" +
+					timeDiff.getDays() + ".");
+		}
 	}
 	
 	public void dateHashMap() {
