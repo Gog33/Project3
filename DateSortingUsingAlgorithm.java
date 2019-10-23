@@ -1,32 +1,31 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map.Entry;
+import java.util.LinkedHashMap;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 public class DateSortingUsingAlgorithm {
-	HashMap<LocalDate, Integer> datesMap;
-	DateTimeFormatter dateFormat;
+	LinkedHashMap<LocalDate, Integer> datesMap;
+	static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	
 	public DateSortingUsingAlgorithm() throws IOException {
-		datesMap = new HashMap<LocalDate, Integer>();
-		dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		datesMap = new LinkedHashMap<LocalDate, Integer>();
 		readDates();
 	}
 	
 	public void dateHashMapSortedDescending() {
-		datesMap = sortDateDescending(datesMap);
-		for (LocalDate dateKey : datesMap.keySet()) {
-			System.out.println(dateFormat.format(dateKey));
+		LinkedHashMap<LocalDate, Integer> descendingDatesMap = sortDateDescending(datesMap);
+		for (LocalDate dateKey : descendingDatesMap.keySet()) {
+			System.out.println(DATE_FORMAT.format(dateKey));
 		}
 	}
 	
 	public void dateHashMapSorted() {
-		datesMap = sortDateAscending(datesMap);
-		for (LocalDate dateKey : datesMap.keySet()) {
-			System.out.println(dateFormat.format(dateKey));
+		LinkedHashMap<LocalDate, Integer> ascendingDatesMap = sortDateAscending(datesMap);
+		for (LocalDate dateKey : ascendingDatesMap.keySet()) {
+			System.out.println(DATE_FORMAT.format(dateKey));
 		}
 	}
 	
@@ -36,18 +35,24 @@ public class DateSortingUsingAlgorithm {
 		String input;
 		Integer counter = 0;
 		while ((input = br.readLine()) != null) {
+			LocalDate inputDate;
 			++counter;
-			input.trim();
-			LocalDate inputDate = LocalDate.parse(input, dateFormat);
+			input = input.trim();
+			try {
+				inputDate = LocalDate.parse(input, DATE_FORMAT);
+			} catch (DateTimeParseException e) {
+				DateTimeFormatter altFormat = DateTimeFormatter.ofPattern("yyyy- MM-dd");
+				inputDate = LocalDate.parse(input, altFormat);
+			}
 			datesMap.put(inputDate, counter);
 		}
 		
 		br.close();
 	}
 	
-	public HashMap<LocalDate, Integer> sortDateAscending(HashMap<LocalDate, Integer> dateMap) {
+	public LinkedHashMap<LocalDate, Integer> sortDateAscending(LinkedHashMap<LocalDate, Integer> dateMap) {
 		ArrayList<LocalDate> list = new ArrayList<LocalDate>(dateMap.keySet());
-		HashMap<LocalDate, Integer> result = new HashMap<LocalDate, Integer>();
+		LinkedHashMap<LocalDate, Integer> result = new LinkedHashMap<LocalDate, Integer>();
 
 		for (int i = 1; i < list.size(); ++i) {
 			LocalDate currDate = list.get(i);
@@ -74,12 +79,16 @@ public class DateSortingUsingAlgorithm {
 				list.set(j + 1, currDate);
 			}
 		}
+		for (int i = 0; i < list.size(); ++i) {
+			int dateNum = dateMap.get(list.get(i));
+			result.put(list.get(i), dateNum);
+		}
 		return result;
 	}
 	
-	public HashMap<LocalDate, Integer> sortDateDescending(HashMap<LocalDate, Integer> dateMap) {
+	public LinkedHashMap<LocalDate, Integer> sortDateDescending(LinkedHashMap<LocalDate, Integer> dateMap) {
 		ArrayList<LocalDate> list = new ArrayList<LocalDate>(dateMap.keySet());
-		HashMap<LocalDate, Integer> result = new HashMap<LocalDate, Integer>();
+		LinkedHashMap<LocalDate, Integer> result = new LinkedHashMap<LocalDate, Integer>();
 
 		for (int i = 1; i < list.size(); ++i) {
 			LocalDate currDate = list.get(i);
@@ -105,6 +114,10 @@ public class DateSortingUsingAlgorithm {
 				}
 				list.set(j + 1, currDate);
 			}
+		}
+		for (int i = 0; i < list.size(); ++i) {
+			int dateNum = dateMap.get(list.get(i));
+			result.put(list.get(i), dateNum);
 		}
 		return result;
 	}

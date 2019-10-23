@@ -3,7 +3,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
@@ -42,7 +42,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    
    public void dateTimeDifferentZone() {
 	   DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
-	   HashMap<String, String> dates = new HashMap<String, String>();
+	   LinkedHashMap<String, String> dates = new LinkedHashMap<String, String>();
 	   ZonedDateTime greenwichTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("GMT", ZoneId.SHORT_IDS));
 	   dates.put("GMT", dtFormat.format(greenwichTime));
 	   ZonedDateTime bangladeshTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("BST", ZoneId.SHORT_IDS));
@@ -58,7 +58,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   DateTimeFormatter printStyle1 = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
 	   DateTimeFormatter printStyle5 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 	   
-	   HashMap<String, String> dates1 = new HashMap<String, String>();
+	   LinkedHashMap<String, String> dates1 = new LinkedHashMap<String, String>();
 	   ZonedDateTime greenwichTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("GMT", ZoneId.SHORT_IDS));
 	   dates1.put("GMT", printStyle1.format(greenwichTime.toLocalDateTime()));
 	   ZonedDateTime bangladeshTime = dateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("BST", ZoneId.SHORT_IDS));
@@ -72,7 +72,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	   
 	   dates1 = sortbyKey(dates1);
 	   
-	   HashMap<String, String> dates3 = new HashMap<String, String>();
+	   LinkedHashMap<String, String> dates3 = new LinkedHashMap<String, String>();
 	   for (Entry<String,String> date : dates1.entrySet())
 		   dates3.put(date.getValue(), "");
 	   
@@ -99,8 +99,8 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		   System.out.println(printStyle5.format(dates5.get(i)));
    }
    
-   public static <Key, Value extends Comparable<String>> HashMap<String, String> sortbyKey(HashMap<String, String> map) {
-       HashMap<String, String> result = new HashMap<>();
+   public static <Key, Value extends Comparable<String>> LinkedHashMap<String, String> sortbyKey(LinkedHashMap<String, String> map) {
+       LinkedHashMap<String, String> result = new LinkedHashMap<>();
 	   ArrayList<Entry<String, String>> list = new ArrayList<>(map.entrySet());
        list.sort(Entry.comparingByKey());
 
