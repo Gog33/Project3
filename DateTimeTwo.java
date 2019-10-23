@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.DayOfWeek;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.time.Period;
 import java.util.Map.Entry;
 import java.io.BufferedReader;
@@ -11,11 +11,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 public class DateTimeTwo {
 	LocalDate currDate;
-	LinkedHashMap<LocalDate, Integer> fileDates;
+	HashMap<LocalDate, Integer> fileDates;
 	
 	public DateTimeTwo() throws IOException {
 		currDate = LocalDate.now();
-		fileDates = new LinkedHashMap<LocalDate, Integer>();
+		fileDates = new HashMap<LocalDate, Integer>();
 		readDates();
 	}
 	
@@ -87,7 +87,7 @@ public class DateTimeTwo {
 	}
 	
 	public void dateHashMapSorted() {
-		LinkedHashMap<LocalDate, Integer> sortedFileDates = sortDateAscending(fileDates);
+		HashMap<LocalDate, Integer> sortedFileDates = sortDateAscending(fileDates);
 		
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		for (Entry<LocalDate, Integer> entry : sortedFileDates.entrySet()) {
@@ -96,9 +96,9 @@ public class DateTimeTwo {
 		}
 	}
 	
-	public LinkedHashMap<LocalDate, Integer> sortDateAscending(LinkedHashMap<LocalDate, Integer> dateMap) {
+	public HashMap<LocalDate, Integer> sortDateAscending(HashMap<LocalDate, Integer> dateMap) {
 		ArrayList<LocalDate> list = new ArrayList<LocalDate>(dateMap.keySet());
-		LinkedHashMap<LocalDate, Integer> result = new LinkedHashMap<LocalDate, Integer>();
+		HashMap<LocalDate, Integer> result = new HashMap<LocalDate, Integer>();
 		
 		for (int i = 1; i < list.size(); ++i) {
 			LocalDate currDate = list.get(i);
