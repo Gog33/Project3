@@ -1,28 +1,36 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 public class DateSortingUsingAlgorithm {
 	HashMap<LocalDate, Integer> datesMap;
+	DateTimeFormatter dateFormat;
 	
 	public DateSortingUsingAlgorithm() throws IOException {
 		datesMap = new HashMap<LocalDate, Integer>();
+		dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		readDates();
 	}
 	
 	public void dateHashMapSortedDescending() {
-		
+		datesMap = sortDateDescending(datesMap);
+		for (LocalDate dateKey : datesMap.keySet()) {
+			System.out.println(dateFormat.format(dateKey));
+		}
 	}
 	
 	public void dateHashMapSorted() {
-		
+		datesMap = sortDateAscending(datesMap);
+		for (LocalDate dateKey : datesMap.keySet()) {
+			System.out.println(dateFormat.format(dateKey));
+		}
 	}
 	
 	public void readDates() throws IOException {
-		DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		BufferedReader br = new BufferedReader(new FileReader("SortingDates.txt"));
 		
 		String input;
@@ -30,7 +38,7 @@ public class DateSortingUsingAlgorithm {
 		while ((input = br.readLine()) != null) {
 			++counter;
 			input.trim();
-			LocalDate inputDate = LocalDate.parse(input, inputFormat);
+			LocalDate inputDate = LocalDate.parse(input, dateFormat);
 			datesMap.put(inputDate, counter);
 		}
 		
