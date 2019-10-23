@@ -72,9 +72,9 @@ public class DateTimeTwo {
 			if (!fileDate.isLeapYear())
 				notLeapYear = "not ";
 			System.out.println(fileDate.getYear() + " is " + notLeapYear +
-					"a leap year, and Difference: " + timeDiff.getYears() +
-					" years, " + timeDiff.getMonths() + " months, and" +
-					timeDiff.getDays() + ".");
+					"a leap year, and Difference: " + Math.abs(timeDiff.getYears()) +
+					" years, " + Math.abs(timeDiff.getMonths()) + " months, and " +
+					Math.abs(timeDiff.getDays()) + " days.");
 		}
 	}
 	
