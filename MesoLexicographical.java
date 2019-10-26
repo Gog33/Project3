@@ -8,7 +8,7 @@ public class MesoLexicographical extends MesoSortedAbstract
 		Map<String, Integer> sortedMap = sortedMap(asciiVal);
 		
 		for (Entry<String, Integer> entry : sortedMap.entrySet()) {
-			System.out.println(entry.getKey() + " " + entry.getValue());
+			System.out.println(entry.getKey());
 		}
 	}
 	
