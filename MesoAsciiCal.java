@@ -1,7 +1,7 @@
 
 public class MesoAsciiCal extends MesoAsciiAbstract {
 	MesoStation station;
-	final static double NRMN_AVG = 79.0;
+	final static int NRMN_AVG = 79;
 	
 	public MesoAsciiCal(MesoStation station) {
 		this.station = station;
@@ -20,7 +20,7 @@ public class MesoAsciiCal extends MesoAsciiAbstract {
 			asciiAverage = (int) Math.ceil(asciiAverage);
 		}
 		
-		double finalAverage = (asciiAverage + NRMN_AVG) / 2.0;
-		return (int) Math.ceil(finalAverage);
+		int finalAverage = ((int) asciiAverage + NRMN_AVG) / 2;
+		return finalAverage;
 	}
 }
