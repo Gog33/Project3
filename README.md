@@ -41,4 +41,12 @@ This project is divided into four sections, each of which have different functio
 * sortedMap: takes in a HashMap unsorted map and puts its values into a TreeMap sorted, which automatically sorts them. The TreeMap sorted is returned
 
 #Section 4:
+**DateSortingUsingAlgorithm methods**
+* Constructor: initializes datesMap as new LinkedHashMap<LocalDate, Integer>, then calls readDates
+* dateHashMapSortedDescending: assigns descendingDatesMap with sortDateDescending(datesMap), and prints out the keys in descendingDatesMap using DATE_FORMAT
+* dateHashMapSortedAscending: assigns ascendingDatesMap with sortDateAscending(datesMap), and prints out the keys in ascendingDatesMap using DATE_FORMAT
+* readDates: creates BufferedReader br to read SortingDates.txt. The strings in the text file are read to input within a while loop. Each go around on the loop increments the Integer counter. String input is parsed to a LocalDate object using DATE_FORMAT, DateTimeFormatter.ofPattern("yyyy-MM-dd"), and the resulting LocalDate and counter are put in datesMap. If the parse fails, the DateTimeParseException is caught and altFormat "yyyy- MM-dd" is used instead, as one entry in SortingDates.txt is improperly formatted
+* sortDateAscending: an algorithm that converts the keys of the input map into an ArrayList and uses insertion sort to sort it. The ArrayList is sorted in ascending chronological order, converted back into a map and returned
+* sortDateDescending: an algorithm that converts the keys of the input map into an ArrayList and uses insertion sort to sort it. The ArrayList is sorted in descending chronological order, converted back into a map and returned
 
+Consistently, the required time for the completion of sortDateAscending was longer than the time for sortDateDescending. [further explanation]
