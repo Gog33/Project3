@@ -1,5 +1,5 @@
 #Project 3: HashMap
-This project is divided into four sections, each of which has a different function.
+This project is divided into four sections, each of which have different functionalities and end goals.
 
 #Section 1:
 **DateTimeOne methods**
@@ -28,8 +28,17 @@ This project is divided into four sections, each of which has a different functi
 * sortDateAscending: an algorithm that converts the keys of the input map into an ArrayList and uses insertion sort to sort it. The ArrayList is sorted in ascending order, converted back into a map and returned
 
 #Section 3:
-**
+**MesoAsciiCal methods**
+* Constructor: initializes this.station as the input MesoStation station
+* calAverage: determines the average ascii value of the characters in station.getStID() by iterating through each character in the stID and adding their ascii value to the double asciiAverage, then dividing asciiAverage by the length of the stID (should be 4). If the decimal portion of asciiAverage is less that 0.25, the value is rounded down; if it is greater, the value is rounded up. Following this, the (int) casted average of asciiAverage and NRMN_AVG (which is 79) is returned
 
+**MesoEquivalent methods**
+* Constructor: initializes station with the MesoStation of the input stID string, and assigns asciiAverage with the MesoAsciiCal.calAverage() value of station
+* calAsciiEqual: creates BufferedReader br to read Mesonet.txt. The lines in the text file are assigned to stIDinput, which is trimmed and then reduced to the substring (0,4) to isolate the stID. The MesoAsciiCal.calAverage() of this stID is assigned to stIDasciiAverage. If stIDasciiAverage is equal to asciiAverage, the stID and its average are added to the HashMap<String, Integer> equalAscii, which is returned at the end of the method
+
+**MesoLexicographical methods**
+* Constructor: takes in HashMap<String, Integer> asciiVal as input. The Map<String, Integer> sortedMap is assigned sortedMap(asciiVal). Then the key of each entry in sortedMap is printed out
+* sortedMap: takes in a HashMap unsorted map and puts its values into a TreeMap sorted, which automatically sorts them. The TreeMap sorted is returned
 
 #Section 4:
 
