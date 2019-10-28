@@ -1,4 +1,5 @@
-#Project 3: HashMap
+# Project 3: HashMap 
+repo for Project 3 
 This project is divided into four sections, each of which have different functionalities and end goals.
 
 #Section 1:
@@ -49,4 +50,3 @@ This project is divided into four sections, each of which have different functio
 * sortDateAscending: an algorithm that converts the keys of the input map into an ArrayList and uses insertion sort to sort it. The ArrayList is sorted in ascending chronological order, converted back into a map and returned
 * sortDateDescending: an algorithm that converts the keys of the input map into an ArrayList and uses insertion sort to sort it. The ArrayList is sorted in descending chronological order, converted back into a map and returned
 
-Consistently, the required time for the completion of sortDateAscending was longer than the time for sortDateDescending. [further explanation]
