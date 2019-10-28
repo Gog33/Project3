@@ -1,8 +1,8 @@
 # Project 3: HashMap 
-repo for Project 3 
+repo for Project 3  
 This project is divided into four sections, each of which have different functionalities and end goals.
 
-#Section 1:
+#Section 1:  
 **DateTimeOne methods**
 * Constructor: initializes dateTime as a LocalDateTime object for the current time
 * getValueOfSecond: returns the second value of dateTime
@@ -17,7 +17,7 @@ This project is divided into four sections, each of which have different functio
 * sortByKey: an algorithm that converts the entries of the input map into an ArrayList, and then sorts the ArrayList with Entry.comparingByKey(). Returns the reconstructed map from the ArrayList
 * sortByYear: an algorithm that takes an ArrayList as input and uses insertion sort to sort it. It looks first for the earliest year, then the earliest month, then the latest day, to sort the dates
 
-#Section 2:
+#Section 2:  
 **DateTimeTwo methods**
 * Constructor: initializes currDate as a LocalDate object and fileDates as a LinkedHashMap<LocalDate, Integer>. Calls readDates method
 * readDates: creates BufferedReader br to read Dates.txt. The strings in the text file are read and parsed by using a DateTimeFormatter object of "MM.dd.yyyy"
@@ -28,7 +28,7 @@ This project is divided into four sections, each of which have different functio
 * dateHashMapSorted: sorts the entries in fileDates using sortDateAscending and assigns it to sortedFileDates. The entries in sortDateAscending are printed in the form "entry.getKey():entry.getValue()"
 * sortDateAscending: an algorithm that converts the keys of the input map into an ArrayList and uses insertion sort to sort it. The ArrayList is sorted in ascending order, converted back into a map and returned
 
-#Section 3:
+#Section 3:  
 **MesoAsciiCal methods**
 * Constructor: initializes this.station as the input MesoStation station
 * calAverage: determines the average ascii value of the characters in station.getStID() by iterating through each character in the stID and adding their ascii value to the double asciiAverage, then dividing asciiAverage by the length of the stID (should be 4). If the decimal portion of asciiAverage is less that 0.25, the value is rounded down; if it is greater, the value is rounded up. Following this, the (int) casted average of asciiAverage and NRMN_AVG (which is 79) is returned
@@ -41,7 +41,7 @@ This project is divided into four sections, each of which have different functio
 * Constructor: takes in HashMap<String, Integer> asciiVal as input. The Map<String, Integer> sortedMap is assigned sortedMap(asciiVal). Then the key of each entry in sortedMap is printed out
 * sortedMap: takes in a HashMap unsorted map and puts its values into a TreeMap sorted, which automatically sorts them. The TreeMap sorted is returned
 
-#Section 4:
+#Section 4:  
 **DateSortingUsingAlgorithm methods**
 * Constructor: initializes datesMap as new LinkedHashMap<LocalDate, Integer>, then calls readDates
 * dateHashMapSortedDescending: assigns descendingDatesMap with sortDateDescending(datesMap), and prints out the keys in descendingDatesMap using DATE_FORMAT
